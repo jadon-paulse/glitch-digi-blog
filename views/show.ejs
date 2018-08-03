@@ -1,0 +1,62 @@
+
+<? include ./partials/header ?>
+
+<? const postUrl = '/blogs/' + blog._id; ?>
+
+<div class="ui main text container">
+
+  <div class="ui huge header" style="color:blanchedalmond; text-align: center" >
+
+    <?= blog.title ?>
+
+  </div>
+
+  <div class="ui padded segment" style="margin-left: 10px">
+
+    <div class="item">
+
+      <img class="ui rounded centered image" src="<?= blog.imageUrl ?>">
+
+      <div class="content">
+
+        <p><?= blog.created.toDateString() ?></p>
+
+              By Digi-Wanderer
+
+      </div>
+
+            <br>
+
+      <div class="description fr-view">
+
+        <p><?- blog.body ?></p>
+
+      </div>
+
+      <a class="ui purple icon button" href="<?= postUrl ?>/edit" style="margin-left: 15px;">
+
+        Edit
+
+        <i class="write icon right"></i>
+
+      </a>
+
+      <form id="delete" action="<?= postUrl ?>?_method=DELETE" method="POST">
+
+        <button class="ui purple basic icon button" style="margin-left: 450px;">
+
+          Delete
+
+          <i class="trash icon"></i>
+
+        </button>
+
+      </form>
+
+    </div>
+
+  </div>
+
+</div>
+
+<? include ./partials/footer ?>
