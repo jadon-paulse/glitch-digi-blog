@@ -15,7 +15,9 @@
     "passport-local": "^1.0.0",
     "passport-google-oauth20": "^1.0.0",
     "user-model": "^0.2.0",
-    "user-home": "^2.0.0"
+    "user-home": "^2.0.0",
+    "connect-flash": "^0.1.1",
+    "passport-local-mongoose": "^5.0.1"
   },
   "devDependencies": {},
   "scripts": {

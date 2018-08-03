@@ -11,8 +11,12 @@ const expressSanitizer = require('express-sanitizer');
 const ejs = require('ejs');
 const mongoose = require('mongoose');
 const methodOverride = require('method-override');
-const authRoutes = require("./routes/auth-routes");
-const passportSetup = require("./config/passport-setup");
+const passport = require('passport');
+const LocalStrategy = require('passport-local');
+const User = require('./models/user');
+const flash = require('connect-flash');
+const middleware = require('./middleware')
+
 
 // CONSTANTS
 
@@ -41,11 +45,26 @@ app.set('view engine', 'ejs');
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(expressSanitizer());
+app.use(flash());
 app.use(methodOverride('_method'));
 ejs.delimiter = '?';
 mongoose.connect('mongodb://player:q23456@ds247121.mlab.com:47121/techplay', {useMongoClient: true});
 
-// VARIABLES
+// PASSPORT CONFIG
+app.use(require("express-session")({ secret: "Deadpool was here", resave: false, saveUninitialized: false })); 
+app.use(passport.initialize()); 
+app.use(passport.session()); 
+passport.use(new LocalStrategy(User.authenticate())); 
+passport.serializeUser(User.serializeUser()); 
+passport.deserializeUser(User.deserializeUser());
+
+//middleware
+app.use(function(req, res, next){
+  res.locals.currentUser = req.user;
+  res.locals.error = req.flash("error");
+  res.locals.success = req.flash("success");
+  next(); //without next(), it stops and doesn't move to next middleware/route handler
+});
 
 // SERVER
 
@@ -59,9 +78,6 @@ app.get('/', function(req, res) {
   res.redirect('/blogs');
 });
 
-// set up routes
-app.use('/auth',authRoutes);
-
   // index route
 app.get('/blogs', function(req, res) {
   Blog.find({}, function(err, blogs) {
@@ -73,25 +89,13 @@ app.get('/blogs', function(req, res) {
   });
 });
 
-  // archive route
-app.get('/blogs/archive', function(req, res) {
-  Blog.find({}, function(err, blogs) {
-    if (err) {
-      console.log('ERROR:', err);
-    } else {
-      res.render('archive', {blogs: blogs});
-    }
-  });
-});
-
-
   // new route
-app.get('/blogs/new', function(req, res) {
+app.get('/blogs/new', middleware.isLoggedIn, function(req, res) {
   res.render('new');
 });
 
   // create route
-app.post('/blogs', function(req, res) {
+app.post('/blogs', middleware.isLoggedIn, function(req, res) {
   const requestedBlog  = req.body.blog;
   requestedBlog.body = req.sanitize(requestedBlog.body);
 
@@ -120,7 +124,7 @@ app.get('/blogs/:id', function(req, res) {
 });
 
   // edit route
-app.get('/blogs/:id/edit', function(req, res) {
+app.get('/blogs/:id/edit', middleware.isLoggedIn, function(req, res) {
   const id = req.params.id;
 
   Blog.findById(id, function(err, foundBlog) {
@@ -134,7 +138,7 @@ app.get('/blogs/:id/edit', function(req, res) {
 });
 
   // update route
-app.put('/blogs/:id', function(req, res) {
+app.put('/blogs/:id', middleware.isLoggedIn, function(req, res) {
   const id = req.params.id;
   const requestedBlog = req.body.blog;
   requestedBlog.body = req.sanitize(requestedBlog.body);
@@ -150,7 +154,7 @@ app.put('/blogs/:id', function(req, res) {
 });
 
   // destroy route
-app.delete('/blogs/:id/', function(req, res){
+app.delete('/blogs/:id/', middleware.isLoggedIn, function(req, res){
   const id = req.params.id;
 
   Blog.findByIdAndRemove(id, function(err) {
@@ -160,6 +164,14 @@ app.delete('/blogs/:id/', function(req, res){
     res.redirect('/blogs');
   });
 });
+
+  //Auth Route
+var authRoutes = require('./routes/auth');
+
+//Require routes
+
+app.use(authRoutes);
+
 
 // FUNCTIONS
 

@@ -1,5 +1,6 @@
 dependencies:
   body-parser: 1.18.3
+  connect-flash: 0.1.1
   ejs: 2.6.1
   express: 4.16.3
   express-sanitizer: 1.0.4
@@ -9,6 +10,7 @@ dependencies:
   passport: 0.4.0
   passport-google-oauth20: 1.0.0
   passport-local: 1.0.0
+  passport-local-mongoose: 5.0.1
   user-home: 2.0.0
   user-model: 0.2.0
 packages:
@@ -81,6 +83,12 @@ packages:
       node: '>= 0.8'
     resolution:
       integrity: sha1-0ygVQE1olpn4Wk6k+odV3ROpYEg=
+  /connect-flash/0.1.1:
+    dev: false
+    engines:
+      node: '>= 0.4.0'
+    resolution:
+      integrity: sha1-2GMPJtlaf4UfmVax6MxnMvO2qjA=
   /content-disposition/0.5.2:
     dev: false
     engines:
@@ -113,6 +121,12 @@ packages:
     dev: false
     resolution:
       integrity: sha512-bC7ElrdJaJnPbAP+1EotYvqZsb3ecl5wi6Bfi6BJTUcNowp6cvspg0jXznRTKDjm/E7AdgFBVeAPVMNcKGsHMA==
+  /debug/3.1.0:
+    dependencies:
+      ms: 2.0.0
+    dev: false
+    resolution:
+      integrity: sha512-OX8XqP7/1a9cqkxYw2yXss15f26NKWBpDXQd0/uK/KPqdQhxbPa994hnzjcE2VqQpDslf55723cKPUOGSmMY3g==
   /depd/1.1.1:
     dev: false
     engines:
@@ -241,6 +255,10 @@ packages:
       node: '>= 0.6'
     resolution:
       integrity: sha1-PYyt2Q2XZWn6g1qx+OSyOhBWBac=
+  /generaterr/1.5.0:
+    dev: false
+    resolution:
+      integrity: sha1-sM62zFFk3yoGEzjMNAqGFTlcUvw=
   /http-errors/1.6.2:
     dependencies:
       depd: 1.1.1
@@ -450,6 +468,18 @@ packages:
       node: '>= 0.4.0'
     resolution:
       integrity: sha1-O5YOih1w0dvnlGFcgnxoxAOSpdA=
+  /passport-local-mongoose/5.0.1:
+    dependencies:
+      debug: 3.1.0
+      generaterr: 1.5.0
+      passport-local: 1.0.0
+      scmp: 2.0.0
+      semver: 5.5.0
+    dev: false
+    engines:
+      node: '>= 6.0.0'
+    resolution:
+      integrity: sha512-VUY5DgBdpjt1tjunJJ1EXV5b2nhMDkXJuhTjyiK660IgIp7kONMyWEe9tGHf8I9tZudXuTF+47JNQLIzU+Hjbw==
   /passport-local/1.0.0:
     dependencies:
       passport-strategy: 1.0.0
@@ -583,6 +613,10 @@ packages:
     optional: true
     resolution:
       integrity: sha512-ntN6SbE3hRqd45PKKadRPgA+xHPWg5lPSj2JWJdJvjTwXDDfkPVtXWvP8jJojvnm+rAsZ2b299C5NwZqq818EA==
+  /scmp/2.0.0:
+    dev: false
+    resolution:
+      integrity: sha1-JHEQ7yLM+JexOj8KvdtSeCOTzWo=
   /semver/5.5.0:
     dev: false
     hasBin: true
@@ -707,6 +741,7 @@ shrinkwrapMinorVersion: 8
 shrinkwrapVersion: 3
 specifiers:
   body-parser: ^1.15.1
+  connect-flash: ^0.1.1
   ejs: ^2.4.1
   express: ^4.16.3
   express-sanitizer: ^1.0.1
@@ -716,5 +751,6 @@ specifiers:
   passport: ^0.4.0
   passport-google-oauth20: ^1.0.0
   passport-local: ^1.0.0
+  passport-local-mongoose: ^5.0.1
   user-home: ^2.0.0
   user-model: ^0.2.0

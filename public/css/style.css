@@ -128,6 +128,17 @@ i.icon.chevron {
   margin:25px auto;
 }
 
+.item{
+  background-color: white;
+}
+
+body{
+    background-image: url("http://www.modafinilsale.com/data/out/792/229014082-retro-games-wallpaper-hd.jpg");
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
 nav.menu ul {
   overflow:hidden;
   float:left;
