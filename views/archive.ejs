@@ -1,0 +1,93 @@
+
+<? include ./partials/header ?>
+
+<div class="ui main text container">
+
+  <div class="ui huge header" style="text-align: center; color: lightskyblue" >
+
+      💾Digi-Wanderers Archive💾
+
+  </div>
+
+  <div class="ui segment" style="margin-left: 7px;
+
+    <div class="ui divided items">
+
+
+      <? blogs.forEach(function(blog) { ?>
+
+        <? const postUrl = '/blogs/' + blog._id; ?>
+
+        <div class="item">
+
+            <a href="<?= postUrl ?>" class="image">
+
+              <img src="<?= blog.imageUrl ?>" href="#">
+
+            </a>
+
+          <div class="content">
+
+            <div class="header">
+
+              <a href="<?= postUrl ?>">
+
+                <?= blog.title ?>
+
+              </a>
+
+            </div>
+            
+            <div class="meta">
+
+              <span>
+
+                <?= blog.created.toDateString() ?>
+
+              </span>
+
+            </div>
+
+            <div class="description">
+              <p>
+
+                <? if(blog.body.length > 250) { ?>
+
+                  <?- blog.body.substring(0,00) ?>......
+
+                <? } else { ?>
+
+                  <?- blog.body ?>
+
+                <? }; ?>         
+
+              </p>
+
+            </div>
+
+<!--             <div class="extra">
+
+              <a class="ui small black icon button" href="<?= postUrl ?>" style="background-color: rgb(96, 66, 114); margin-left: 125px">
+
+                Read More
+
+                <i class="right chevron icon"></i>
+
+              </a>
+
+            </div> -->
+
+
+          </div>
+
+        </div>
+
+      <? }); ?>
+
+    </div>
+
+  </div>
+
+</div>
+
+<? include ./partials/footer ?>

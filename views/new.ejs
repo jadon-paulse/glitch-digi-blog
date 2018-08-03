@@ -1,0 +1,80 @@
+
+  <!-- include libraries(jQuery, bootstrap) -->
+  <link href="https://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> 
+  
+  <script src="https://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script> 
+  
+  <!-- include summernote css/js -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.css" rel="stylesheet">
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.js"></script>
+
+<? include ./partials/header ?>
+
+<div class="ui main text container segment">
+
+  <div class="ui purple huge header">
+
+    New Post
+
+  </div>
+
+  <form action="/blogs" method="POST" class="ui form">
+
+    <div class="field">
+
+      <label>Title</label>
+
+      <input type="text" name="blog[title]" placeholder="Title" required>
+
+    </div>
+
+    <div class="field">
+
+      <label>Image URL</label>
+
+      <input type="text" name="blog[imageUrl]" placeholder="image Url" required>
+
+    </div>
+
+    <div class="field">
+
+      <label>Post Content</label>
+
+      <textarea id="summernote" name="blog[body]" placeholder="Post Content" required></textarea>
+
+    </div>
+
+    <button class="ui purple icon button" style="margin-left: 18px">
+
+      Submit
+
+      <i class="send icon right"></i>
+
+    </button>
+
+    <a href="/blogs" class="ui purple basic icon button" style="margin-left: 450px">
+
+      Cancel
+
+      <i class="remove icon right"></i>
+
+    </a>
+
+  </form>
+
+</div>
+
+  <script>
+
+    $(document).ready(function() {
+
+    $('#summernote').summernote();
+
+    });
+
+  </script>
+
+<? include ./partials/footer ?>
