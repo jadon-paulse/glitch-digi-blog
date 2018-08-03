@@ -113,10 +113,14 @@
     <h1><?= blog.title ?></h1>
     
     <hr>
+   
+    <div class="block">
+      
     
-    <p>
+    
+        <p>
         
-      <? if(blog.body.length > 250) { ?>
+          <? if(blog.body.length > 250) { ?>
 
                   <?- blog.body.substring(0,250) ?>...
 
@@ -126,7 +130,9 @@
 
                 <? }; ?>  
       
-    </p>
+        </p>
+      
+    </div>
     
     <a href="<?= postUrl ?>" class="continue-lendo">Read more →</a>
     

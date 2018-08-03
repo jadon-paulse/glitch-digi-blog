@@ -1,34 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Login</title>
-</head>
-    <body>
-    
-        <nav>
+<? include ./partials/header ?>
 
-            <ul>
-
-                <li><a href="/auth/logout">Logout</a></li>
-                <li><a href="/auth/login">Login</a></li>
-                <li><a href="/">Homepage</a></li>
-                
-            </ul>
-            
-        </nav>
-
-            <header>
-
-                <h1>Login using...</h1>
-
-            </header>
-
-                <main>
-
-                    <a class="google-btn" href="/auth/google">Google+</a>
-
-                </main>
-
-    </body>
-</html>
+<h1>Log In Form</h1>
+<form action="/login" method="POST">
+    <div class="ui massive form">
+      <div class="two fields">
+        <div class="field">
+          <label>Username</label>
+          <input placeholder="Username" type="text" name="username">
+        </div>
+        <div class="field">
+          <label>Password</label>
+          <input placeholder="Password" type="password" name="password">
+        </div>
+      </div>
+      <button class="ui orange basic button">LOGIN</button>
+    </div>
+</form>

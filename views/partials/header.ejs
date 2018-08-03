@@ -38,19 +38,19 @@
     
     <li>
       
-      <a href="/blogs/new">About me</a>
+      <a href="/blogs/new">Create Post</a>
       
     </li>
     
     <li>
       
-      <a href="/blogs/Archive">Contact</a>
+      <a href="/blogs/Archive">Archive</a>
       
     </li>
     
-    <li><a href="/auth/logout">Logout</a></li>
+    <li><a href="/logout">Logout</a></li>
     
-    <li><a href="/auth/login">Login</a></li>
+    <li><a href="/login">Login</a></li>
     
   </ul>
   
@@ -90,16 +90,22 @@
         
           <h2>Title</h2>
         
-              <form action="/login" method="POST">
-                
-                <input type="text" name="username"><br>
-                
-                <input type="password" name="password"><br>
-                
-                <input type="submit" value="Login">
-                
-              </form>
+             <? if(!currentUser){ ?>
+          <button><a class="crow" href="/login">LogIn</a></button>
+          <a class="mid"  href="/logout"><i class="power off icon"></i>LogOut</a>
+          <? } else{ ?>
+            <a class="ui item" href="#">Hey, <?= currentUser.username ?>!</a>
+            <a class="ui item inverted red button"  href="/logout"><i class="power off icon"></i>LogOut</a>
+          <? } ?>
         
       </div>
       
   </aside>
+  
+   <? if(error && error.length > 0){?>
+            <div class="ui red message"><?= error ?></div>
+            <? } ?>
+            <? if(success && success.length > 0){?>
+            <div class="ui floating message"><?= success ?></div>
+            <? } ?>
+            <div id="love-u">
